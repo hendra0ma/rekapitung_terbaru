@@ -390,6 +390,48 @@ $tps = 2963;
                 </div>
             </div>
         </div>
+        <div class="modal fade" style="background-image: url({{url('')}}/storage/satelit.jpg); background-repeat: no-repeat;
+                background-size: cover;" id="modalMap" tabindex="-1" aria-labelledby="modalCommanderLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content bg-dark">
+                    <div class="modal-header">
+                        <div class="row w-100 justify-content-end  align-items-center">
+                            <div class="col-md">
+                                <span><img src="{{url('')}}/public/storage/alien.png" style="width:100px" alt=""> <b
+                                        class="text-white fs-3" style="margin-left: -20px;">DETAIL TRACKING</b></span>
+                            </div>
+                            <div class="col-md-5">
+                                <b class="text-white fs-5 d-flex justify-content-end align-items-center my-auto align-self-center"
+                                    id="modalCommanderLabel"></b>
+                            </div>
+                        </div>
+
+                    </div>
+                    <form action="{{url('')}}/administrator/main-permission" id="form-izin" method="post">
+                        @csrf
+                        <input type="hidden" value="" name="izin">
+                        <input type="hidden" value="" name="jenis">
+                        <input type="hidden" name="order" value="{{Auth::user()->id}}">
+                        <div class="modal-body">
+                            <p id="text-container" class="text-white">
+
+                            </p>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <input type="number" class="form-control" name="kode" placeholder="kode">
+                                </div>
+                            </div>
+                            <input type="hidden" name="order" value="{{Auth::user()->id}}">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger">Commander Permission</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
         <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">

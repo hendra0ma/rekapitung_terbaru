@@ -69,11 +69,6 @@ Route::get('/', function () {
     }
 });
 
-Route::get('/map2',function ()
-{
-    $data['tracking'] = Tracking::get();
-    return view('layouts.map2',$data);
-})->name('map2');
 
 Route::get('/memuat', function () {
     return view('test.memuat');

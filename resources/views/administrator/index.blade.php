@@ -496,7 +496,7 @@ $tps = Tps::count();
         <div class="card-title">Admin Demography Tracking</div>
 
         <div class="ms-auto">
-        <a class="nav-link icon full-screen-link nav-link-bg"id="ikon-map-full"data-bs-target="#mapFull"data-bs-toggle="modal">
+        <a class="nav-link icon full-screen-link nav-link-bg"id="ikon-map-full">
                         <i class="fe fe-minimize"></i>
                     </a>
         </div>
