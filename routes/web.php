@@ -41,10 +41,10 @@ use Illuminate\Support\Facades\Cache;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Http\Controllers\CheckingController;
 use App\Http\Controllers\CommanderController;
-
 use App\Http\Controllers\HunterController;
 use App\Http\Controllers\Payrole;
 use App\Models\MultiAdministrator;
+use App\Models\Tracking;
 use Illuminate\Support\Facades\Cookie;
 
 use function GuzzleHttp\Promise\all;
@@ -68,6 +68,12 @@ Route::get('/', function () {
         return redirect('index');
     }
 });
+
+Route::get('/map2',function ()
+{
+    $data['tracking'] = Tracking::get();
+    return view('layouts.map2',$data);
+})->name('map2');
 
 Route::get('/memuat', function () {
     return view('test.memuat');

@@ -493,11 +493,32 @@ $tps = Tps::count();
 
 <div class="card mg-b-20">
     <div class="card-header">
-        <div class="card-title">Admin Tracking ({{$kota['name']}})</div>
-        <div class="ms-auto"> <h2>User aktif : {{count($tracking)}}</h2></div>
+        <div class="card-title">Admin Demography Tracking</div>
+
+        <div class="ms-auto">
+        <a class="nav-link icon full-screen-link nav-link-bg"id="ikon-map-full"data-bs-target="#mapFull"data-bs-toggle="modal">
+                        <i class="fe fe-minimize"></i>
+                    </a>
+        </div>
     </div>
     <div class="card-body">
         <div class="ht-300" id="map" style="height:600px"></div>
     </div>
+</div>
+<div class="modal"data-easein="expandIn" id="mapFull" tabindex="-1" aria-labelledby="mapFullLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="mapFullLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body map2">
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 @endsection
