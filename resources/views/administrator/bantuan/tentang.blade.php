@@ -63,7 +63,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md">
-                        <p class="mt-0">Hak cipta 2021 Rekapitung. Semua hak dilindungi undang-undang.</p>
+                        <p class="mt-0">Hak cipta 2024 Rekapitung. Semua hak dilindungi undang-undang.</p>
                     </div>
                 </div>
                 <hr>
