@@ -502,9 +502,10 @@ $tps = Tps::count();
         </div>
     </div>
     <div class="card-body">
-        <div class="ht-300" id="map" style="height:600px"></div>
+        <div class="ht-300" id="map" style="height:600px; z-index: 2"></div>
     </div>
 </div>
+
 <div class="modal"data-easein="expandIn" id="mapFull" tabindex="-1" aria-labelledby="mapFullLabel" aria-hidden="true">
   <div class="modal-dialog modal-fullscreen">
     <div class="modal-content">

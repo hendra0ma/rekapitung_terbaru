@@ -135,7 +135,7 @@ $tps = 2963;
                 </li>
 
                 <li>
-                    <h3>Verifikator Perhitungan</h3>
+                    <h3>Verifikator</h3>
                 </li>
 
                 <li class="slide">
@@ -159,7 +159,7 @@ $tps = 2963;
                 </li>
 
                 <li>
-                    <h3>Audit Perhitungan</h3>
+                    <h3>Audit</h3>
                 </li>
                 <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="#"><i
@@ -177,7 +177,7 @@ $tps = 2963;
                             Histori</span></a>
                 </li>
                 <li>
-                    <h3>Kecurangan Perhitungan</h3>
+                    <h3>Kecurangan</h3>
                 </li>
                 <li>
                     <a class="side-menu__item" href="/v2l_security/{{encrypt(11)}}?title=Validasi Kecurangan"><i
@@ -191,7 +191,7 @@ $tps = 2963;
 
             
                 <li>
-                    <h3>Fitur Utama Rekapitung</h3>
+                    <h3>Fitur Utama</h3>
                 </li>
                 <li>
                     <a class="side-menu__item" href="/v2l_security/{{encrypt(20)}}?title=Pencetakan Data Kecurangan"><i
@@ -212,7 +212,7 @@ $tps = 2963;
                 </li>
 
                 <li>
-                    <h3>Laporan Kecurangan Pemilu</h3>
+                    <h3>Laporan Kecurangan</h3>
                 </li>
                 
                 <li>
@@ -232,7 +232,7 @@ $tps = 2963;
 
 
                 <li>
-                    <h3>Pengaturan Commander</h3>
+                    <h3>Pengaturan</h3>
                 </li>
                 <li>
                     <a class="side-menu__item modal-action" href="#modalCommander" data-bs-toggle="modal"
