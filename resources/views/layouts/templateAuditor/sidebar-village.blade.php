@@ -36,7 +36,7 @@ $kota = Regency::where('id', $config['regencies_id'])->first();
                 </li>
                 <li class="mt-5">
                     <center>
-                        <img src="{{asset('storage').'/'.$config['regencies_logo']}}" style="width:120px;height:auto">
+                        <img src="{{asset('images/logo')}}/rekapitung_gold.png" style="width:120px;height:auto">
                     </center>
                 </li>
                 <li class="mt-3">

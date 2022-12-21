@@ -33,7 +33,7 @@ $tps = 2963;
                 </a><!-- LOGO -->
             </div>
             <ul class="side-menu">
-                <li class="my-2">
+                <!-- <li class="my-2">
                     &nbsp;
                 </li>
                 <li class="mt-5">
@@ -49,6 +49,12 @@ $tps = 2963;
                             </center>
                         </a>
                     </span>
+                </li> -->
+
+                <li class="mt-5">
+                    <center>
+                        <img src="{{asset('images/logo')}}/rekapitung_gold.png" style="width:120px;height:auto">
+                    </center>
                 </li>
                 <li>
                     <h3>Main</h3>
