@@ -92,6 +92,7 @@ class AdminController extends Controller
         foreach ($incoming_vote as $key) {
             $data['total_incoming_vote'] += $key->voice;
         }
+        $data['suara_masuk'] = SaksiData::count('voice');
         $data['tracking'] = ModelsTracking::get();
         $data['config'] = Config::first();
         $data['kec'] = District::where('regency_id', $data['config']['regencies_id'])->get();
