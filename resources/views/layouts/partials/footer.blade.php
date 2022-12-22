@@ -77,21 +77,6 @@
 </style>
 
 <!-- Modal -->
-<div class="modal fade" id="chat" tabindex="-1" role="dialog" aria-labelledby="chatMessage" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Chat Message</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="container-fluid">
-                    <button class="btn btn-primary rounded-0 w-100 mb-2" data-bs-dismiss="modal" type="button" onclick="openForm()">Aisyah Kayla Utami</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <div class="chat-popup" style="z-index: 1070;" id="myForm">
     <form class="form-container">

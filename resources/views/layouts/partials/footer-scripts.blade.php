@@ -240,7 +240,7 @@ let myModal = new bootstrap.Modal(document.getElementById('modallockdown'), {
 <script src="../../assets/js/circle-progress.min.js"></script>
 <script>
     var cities = L.layerGroup();
-    
+
 
    @foreach($tracking as $track)
     <?php $user = User::where('id', (string)$track->id_user)->first(); ?>
@@ -248,11 +248,11 @@ let myModal = new bootstrap.Modal(document.getElementById('modallockdown'), {
       L.marker([{{$track['latitude']}},{{$track['longitude']}}]).bindPopup(' Tidak Terdeteksi ').addTo(cities);
     @else
        var text<?= $user['id'] ?> = '<div class="row"><div class="col-4"><img src="' + '<?php if($user["profile_photo_path"] == NULL){ echo "https://ui-avatars.com/api/?name=' + '".$user["name"]."' +'&color=7F9CF5&background=EBF4FF"; }else{ echo url("/storage/profile-photos/".$user["profile_photo_path"]); } ?>' + '" class="'+ 'img-fluid' + '"  width="150px" height="auto" /></div>   <div class="col-8"><table>' + '<tr><td>Nama</td><td>:</td><td>' + '<?= $user["name"] ?>' + '</td></tr>' + '<tr><td>Email</td><td>:</td><td>' + '<?= $user["email"]?>' + '</td></tr>' + '<tr><td>Nomor</td><td>:</td><td>' + '<?= $user["no_hp"]?>' + '</td></tr>' + '<tr><td>Last Seen</td><td>:</td><td>' + '    {{ \Carbon\Carbon::parse($user["last_seen"])->diffForHumans() }}' + '</td></tr>' + '</table><a href="{{url('/')}}/administrator/patroli_mode/tracking/detail/<?= encrypt($user["id"])?>">Detail Tracking</a>  </div> </div>';
-    L.marker([{{ $track['latitude']}}, {{ $track['longitude']}}]).bindPopup(text<?= $user['id'] ?>).addTo(cities);   
+    L.marker([{{ $track['latitude']}}, {{ $track['longitude']}}]).bindPopup(text<?= $user['id'] ?>).addTo(cities);
     @endif
-  
+
     @endforeach
-    
+
     var mbAttr = '',
         mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
     var grayscale = L.tileLayer(mbUrl, {
@@ -274,7 +274,7 @@ let myModal = new bootstrap.Modal(document.getElementById('modallockdown'), {
         zoom: 10,
         layers: [streets, cities]
     });
-    fetch("http://127.0.0.1:8000/geojson/tangsel.json").then(response => response.json())
+    fetch("{{url('/')}}/geojson/tangsel.json").then(response => response.json())
         .then(json => {
             console.log(json.features)
             L.geoJSON(json.features[7]).addTo(map);
