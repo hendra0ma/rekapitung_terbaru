@@ -22,7 +22,7 @@ use App\Models\User;
                 </h3>
             </div>
       </div>
-      
+
     </div>
   </div>
 </div>
@@ -103,7 +103,6 @@ use App\Models\User;
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.ui.min.js"></script>
-
 <script>
     $(".modal").each(function(l){$(this).on("show.bs.modal",function(l){var o=$(this).attr("data-easein");"shake"==o?$(".modal-dialog").velocity("callout."+o):"pulse"==o?$(".modal-dialog").velocity("callout."+o):"tada"==o?$(".modal-dialog").velocity("callout."+o):"flash"==o?$(".modal-dialog").velocity("callout."+o):"bounce"==o?$(".modal-dialog").velocity("callout."+o):"swing"==o?$(".modal-dialog").velocity("callout."+o):$(".modal-dialog").velocity("transition."+o)})});
 </script>
@@ -122,13 +121,10 @@ let myModal = new bootstrap.Modal(document.getElementById('modallockdown'), {
 
 
     $(document).ready(function() {
-        
+
         @if($config->lockdown == "yes")
             myModal.show()
-        @endif
-        
-        
-        Pusher.logToConsole = true;
+        @endif;
         var pusher = new Pusher('d3492f7a24c6c2d7ed0f', {
             cluster: 'ap1'
         });
@@ -235,38 +231,68 @@ let myModal = new bootstrap.Modal(document.getElementById('modallockdown'), {
 
 
 <!-- Make sure you put this AFTER Leaflet's CSS -->
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
-
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+     integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+     crossorigin=""></script>
+     <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
 <!-- CHART-CIRCLE JS-->
 <script src="../../assets/js/circle-progress.min.js"></script>
 <script>
-$('#ikon-map-full').on('click',function(){
-    $.ajax({
-    url:"{{route('map2')}}",
-    type:"get",
-    success:function(data){
-        $('div.modal-body.map2').html(data);
-    }
-})
-})
-  
+    var cities = L.layerGroup();
+    
 
-
-var map = L.map('map').setView([-6.261223099846002, 106.69325190584601], 10);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-    @foreach($tracking as $track)
+   @foreach($tracking as $track)
     <?php $user = User::where('id', (string)$track->id_user)->first(); ?>
     @if($user == NULL)
-      L.marker([{{$track['latitude']}},{{$track['longitude']}}]).bindPopup(' Tidak Terdeteksi ').addTo(map);
+      L.marker([{{$track['latitude']}},{{$track['longitude']}}]).bindPopup(' Tidak Terdeteksi ').addTo(cities);
     @else
        var text<?= $user['id'] ?> = '<div class="row"><div class="col-4"><img src="' + '<?php if($user["profile_photo_path"] == NULL){ echo "https://ui-avatars.com/api/?name=' + '".$user["name"]."' +'&color=7F9CF5&background=EBF4FF"; }else{ echo url("/storage/profile-photos/".$user["profile_photo_path"]); } ?>' + '" class="'+ 'img-fluid' + '"  width="150px" height="auto" /></div>   <div class="col-8"><table>' + '<tr><td>Nama</td><td>:</td><td>' + '<?= $user["name"] ?>' + '</td></tr>' + '<tr><td>Email</td><td>:</td><td>' + '<?= $user["email"]?>' + '</td></tr>' + '<tr><td>Nomor</td><td>:</td><td>' + '<?= $user["no_hp"]?>' + '</td></tr>' + '<tr><td>Last Seen</td><td>:</td><td>' + '    {{ \Carbon\Carbon::parse($user["last_seen"])->diffForHumans() }}' + '</td></tr>' + '</table><a href="{{url('/')}}/administrator/patroli_mode/tracking/detail/<?= encrypt($user["id"])?>">Detail Tracking</a>  </div> </div>';
-    L.marker([{{ $track['latitude']}}, {{ $track['longitude']}}]).bindPopup(text<?= $user['id'] ?>).addTo(map);   
+    L.marker([{{ $track['latitude']}}, {{ $track['longitude']}}]).bindPopup(text<?= $user['id'] ?>).addTo(cities);   
     @endif
+  
     @endforeach
+    
+    var mbAttr = '',
+        mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+    var grayscale = L.tileLayer(mbUrl, {
+            maxZoom: 20,
+            id: 'mapbox/satellite-v9',
+            tileSize: 512,
+            zoomOffset: -1,
+
+        }),
+        streets = L.tileLayer(mbUrl, {
+            maxZoom: 20,
+            id: 'mapbox/streets-v11',
+            tileSize: 512,
+            zoomOffset: -1,
+            attribution: mbAttr
+        });
+    var map = L.map('map', {
+        center: [-6.289576896901706, 106.71141255004683],
+        zoom: 10,
+        layers: [streets, cities]
+    });
+    fetch("http://127.0.0.1:8000/geojson/tangsel.json").then(response => response.json())
+        .then(json => {
+            console.log(json.features)
+            L.geoJSON(json.features[7]).addTo(map);
+        });
+    let i = 0;
+    var baseLayers = {
+        "Track": streets,
+        "Satelit": grayscale,
+    };
+
+    var overlays = {
+        "Cities": cities
+    };
+
+    L.control.layers(baseLayers, overlays).addTo(map);
+    L.Control.geocoder().addTo(map);
 </script>
+
 @else
         <script>
                var chart = c3.generate({

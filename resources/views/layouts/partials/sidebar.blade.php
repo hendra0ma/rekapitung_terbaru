@@ -2,6 +2,7 @@
 
 use App\Models\Config;
 use App\Models\District;
+use App\Models\Province;
 use App\Models\Regency;
 use App\Models\Tps;
 use Illuminate\Support\Facades\DB;
@@ -37,7 +38,7 @@ $tps = 2963;
                 </a><!-- LOGO -->
             </div>
             <ul class="side-menu">
-                <li class="my-2">
+                <!-- <li class="my-2">
                     &nbsp;
                 </li>
                 <li class="mt-5">
@@ -53,10 +54,36 @@ $tps = 2963;
                             </center>
                         </a>
                     </span>
+                </li> -->
+
+                <li class="my-2">
+                    &nbsp;
+                </li>
+                <li class="mt-5">
+                    <center>
+                        <img src="{{asset('images/logo')}}/rekapitung_gold.png" style="width:120px;height:auto">
+                    </center>
                 </li>
                 <li>
                     <h3>Main Count</h3>
                 </li>
+
+                <li class="slide">
+                <?php
+                    $props = Province::where('id',$kota['province_id'])->first();
+                    $cityProp = Regency::where('province_id',$kota['province_id'])->get();
+                
+                ?>
+                    <a class="side-menu__item" data-bs-toggle="slide" href="#"><i
+                            class="side-menu__icon fe fe-grid"></i><span class="side-menu__label">PROVINSI {{$props->name}}</span><i
+                            class="angle fa fa-angle-right"></i></a>
+                    <ul class="slide-menu">
+                        @foreach($cityProp as $cp)
+                        <li><a href="{{url('')}}/administrator/absensi" class="slide-item">{{$cp->name}}</a></li>
+                        @endforeach
+                    </ul>
+                </li>
+
                 <!-- <li>
                     <a class="side-menu__item" href="{{url('')}}/administrator/absensi"><i class="side-menu__icon mdi mdi-printer"></i><span class="side-menu__label">Absensi Saksi</span></a>
                 </li> -->
@@ -358,6 +385,48 @@ $tps = 2963;
                                 <!--<h5 class="modal-title text-white my-auto" id="modalCommanderLabel"></h5>-->
                                 <span><img src="{{url('')}}/public/storage/alien.png" style="width:100px" alt=""> <b
                                         class="text-white fs-3" style="margin-left: -20px;">COMMANDER CODE</b></span>
+                            </div>
+                            <div class="col-md-5">
+                                <b class="text-white fs-5 d-flex justify-content-end align-items-center my-auto align-self-center"
+                                    id="modalCommanderLabel"></b>
+                            </div>
+                        </div>
+
+                    </div>
+                    <form action="{{url('')}}/administrator/main-permission" id="form-izin" method="post">
+                        @csrf
+                        <input type="hidden" value="" name="izin">
+                        <input type="hidden" value="" name="jenis">
+                        <input type="hidden" name="order" value="{{Auth::user()->id}}">
+                        <div class="modal-body">
+                            <p id="text-container" class="text-white">
+
+                            </p>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <input type="number" class="form-control" name="kode" placeholder="kode">
+                                </div>
+                            </div>
+                            <input type="hidden" name="order" value="{{Auth::user()->id}}">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger">Commander Permission</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" style="background-image: url({{url('')}}/storage/satelit.jpg); background-repeat: no-repeat;
+                background-size: cover;" id="modalMap" tabindex="-1" aria-labelledby="modalCommanderLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content bg-dark">
+                    <div class="modal-header">
+                        <div class="row w-100 justify-content-end  align-items-center">
+                            <div class="col-md">
+                                <span><img src="{{url('')}}/public/storage/alien.png" style="width:100px" alt=""> <b
+                                        class="text-white fs-3" style="margin-left: -20px;">DETAIL TRACKING</b></span>
                             </div>
                             <div class="col-md-5">
                                 <b class="text-white fs-5 d-flex justify-content-end align-items-center my-auto align-self-center"
