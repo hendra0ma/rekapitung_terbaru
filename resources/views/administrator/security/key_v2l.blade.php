@@ -159,9 +159,10 @@
 							</div>
 						</form>
 					</div>
-					<div class="card-footer">
+					<div class="card-footer pt-0">
 						<div class="d-flex justify-content-center my-3">
-							<a href="" class="social-login  text-center me-4">
+                            <h2 class="fw-bold mb-0">Pilpres 2024</h2>
+							{{-- <a href="" class="social-login  text-center me-4">
 								<i class="fa fa-google"></i>
 							</a>
 							<a href="" class="social-login  text-center me-4">
@@ -169,7 +170,7 @@
 							</a>
 							<a href="" class="social-login  text-center">
 								<i class="fa fa-twitter"></i>
-							</a>
+							</a> --}}
 						</div>
 					</div>
 				</div>
