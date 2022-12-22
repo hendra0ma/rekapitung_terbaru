@@ -267,6 +267,7 @@ $tps = Tps::count();
                         <div class="container" style="margin-left: 3%; margin-top: 10%;">
                             <div class="text-center">Progress {{substr($realcount,0,5)}}% dari 100%</div>
                             <div id="chart-pie" class="chartsh h-100 w-100"></div>
+                            <div class="text-center mt-5"><span class="badge bg-success">{{$total_incoming_vote}} / {{$dpt}}</span></div>
                         </div>
                     </div>
                     <div class="col-xxl-6">
@@ -319,6 +320,7 @@ $tps = Tps::count();
                         <div class="container" style="margin-left: 3%; margin-top: 10%;">
                             <div class="text-center">Terverifikasi {{$saksi_terverifikasi}} TPS dari {{$saksi_masuk}} TPS Masuk</div>
                             <div id="chart-donut" class="chartsh h-100 w-100"></div>
+                            <div class="text-center mt-5"><span class="badge bg-success">{{$total_verification_voice}} / {{$dpt}}</span></div>
                         </div>
                     </div>
                     <div class="col-xxl-6">
@@ -473,7 +475,7 @@ $tps = Tps::count();
                         <div class="card-title text-white">Suara Masuk</div>
                     </div>
                     <div class="card-body">
-                        <h3 class="">90713</h3>
+                        <h3 class="">{{ $suara_masuk }}</h3>
                     </div>
                 </div>
             </div>
